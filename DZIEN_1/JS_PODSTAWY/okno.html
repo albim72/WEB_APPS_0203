@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>okno z js</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var e = document.getElementById("go");
+            e.addEventListener("click", function() {
+                var url = document.getElementById("url").value;
+                window.open(url,
+                    "popUpWindow", "height=600, width=800, left=150,top=150,resizable=yes,scrollbars=yes,menubar=no,lacation=no,directories=no,status=yes")
+            }, false);
+
+        });
+    </script>
+</head>
+
+<body>
+    <h3>Wpisz adres strony i kliknij Otwórz</h3>
+    <form action="#" name="popupForm">
+        <input type="text" name="url" id="url" value="https://onet.pl">
+        <input type="button" name="go" id="go" value="Otwórz">
+    </form>
+</body>
+
+</html>
