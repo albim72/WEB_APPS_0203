@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>szukanie położenia</title>
+</head>
+
+<body>
+    <div id="btnFindMe">
+        <button id="findMe">Znajdź mnie</button>
+    </div>
+    <div id="myLocation"></div>
+
+    <script>
+        function init() {
+            var btnFindMe = document.getElementById('findMe');
+            btnFindMe.addEventListener("click", findMe, false);
+        }
+
+        function geoSuccess(position) {
+            var dateDisplay = new Date(position.timestamp);
+
+            var myLocationDiv = document.getElementById('myLocation');
+
+            myLocationDiv.innerHTML = 'Szerokość geograficzna: ' + position.coords.latitude + '<br>' +
+                'Długość geograficzna: ' + position.coords.longitude + '<br>' +
+                'Dokładność: ' + position.coords.accuracy + '<br>' +
+                'Wysokość: ' + position.coords.altitude + '<br>' +
+                'Dokładność wysokości: ' + position.coords.altitudeAccuracy + '<br>' +
+                'Kierunek: ' + position.coords.heading + '<br>' +
+                'Prędkość: ' + position.coords.speed + '<br>' +
+                'Pozycja DOMTimeStamp: ' + position.timestamp + '<br>' +
+                'Data i czas: ' + dateDisplay.toLocaleString();
+        }
+
+        function findMe() {
+            var myLocationDiv = document.getElementById('myLocation');
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(geoSuccess);
+                myLocationDiv.innerHTML = 'uzyskiwanie informacji o Twoim położeniu....';
+            } else {
+                myLocationDiv.innerHTML = 'Geolocation API nie jest dostępne';
+            }
+        }
+        window.addEventListener('load', init, false);
+    </script>
+</body>
+
+</html>
