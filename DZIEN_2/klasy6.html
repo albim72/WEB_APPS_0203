@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document
+    </title>
+</head>
+
+<body>
+    <script>
+        class Animal {
+            constructor(name) {
+                this.name = name
+            }
+            info() {
+                console.log("zwierz nazywa się: " + this.name)
+            }
+        }
+
+        var lion = new Animal("Lew ");
+        lion.info();
+        console.log("___________________________________")
+        var legsCountSymbol = Symbol()
+        class Insect extends Animal {
+            constructor(name) {
+                super(name);
+                this[legsCountSymbol] = 0;
+            }
+
+            get legsCount() {
+                return this[legsCountSymbol];
+            }
+
+            set legsCount(value) {
+                if (value < 0) {
+                    console.log("insekt nie może mieć ujemnej wartość odnóży...")
+                }
+                this[legsCountSymbol] = value;
+            }
+
+            insektinfo() {
+                super.info()
+                console.log("insekt ma " + this[legsCountSymbol] + " odnóży.")
+            }
+        }
+
+        var spider = new Insect("Pająk Krzyżak")
+        spider.legsCount = 8
+        spider.insektinfo()
+    </script>
+</body>
+
+</html>
